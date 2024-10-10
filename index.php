@@ -5,7 +5,7 @@ require("config.php");
 //获取参数
 $request = $_SERVER["REQUEST_URI"];
 if ($request == "/")
-    $redirectTo = "create.html";
+    $redirectTo = "https://nmteam.xyz";
 else {
     $redirectTo = "404.html";
     $request = str_replace("/", "", $request);
