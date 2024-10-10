@@ -9,6 +9,14 @@ $link = str_replace("&amp;", "&", isset($_GET['link']) ? htmlspecialchars($_GET[
 $day = isset($_GET['day']) ? htmlspecialchars($_GET['day']) : '';
 $age = isset($_GET['age']) ? htmlspecialchars($_GET['age']) : '';
 $http_type = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) ? 'https://' : 'http://';
+$create_password_input = isset($_GET['password']) ? htmlspecialchars($_GET['password']) : '';
+
+// 判断密码是否正确
+if ($create_password != $create_password_input) {
+    $result = array("code" => -6, "msg" => "Password is incorrect. ");
+    goto sendResult;
+}
+
 // 判断链接是否正确
 if (strpos($link, "http://", 0) !== 0 & strpos($link, "https://", 0) !== 0) {
     $result = array("code" => -1, "msg" => "No link or not a link.");
